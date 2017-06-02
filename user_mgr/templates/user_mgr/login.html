@@ -1,0 +1,16 @@
+{% extends 'user_mgr/base.html' %}
+{% load staticfiles %}
+{% block inner_content %}
+<h1>This is the Login form</h1>
+{% if messages %}
+  {% for msg in messages %}
+    <p>{{ msg }}</p>
+  {% endfor %}
+{% endif %}
+<form class="form" action="{% url 'user_mgr:login' %}" method="post">
+	<input type="hidden" name="next"  value="{{ request.GET.next }}">
+  {% csrf_token %}
+  {{ loginForm.as_p }}
+  <button type="submit" name="button" value="submit">Submit!</button>
+</form>
+{% endblock inner_content %}
